@@ -33,6 +33,11 @@ class QuoteTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SKPaymentQueue.default().add(self) // trigger paymentQueue: updatedTransactions method
+        
+        // Check user status
+        if isPurchased() {
+            showPremiumQuotes()
+        }
     }
 
     // MARK: - Table view data source
@@ -100,6 +105,9 @@ extension QuoteTableViewController: SKPaymentTransactionObserver {
                 // What users get when paid for premium
                 showPremiumQuotes()
                 
+                // Set UserDefaults to true when users purchased premium
+                UserDefaults.standard.set(true, forKey: productID)
+                
                 // End transaction after transaction has completed
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
@@ -118,5 +126,16 @@ extension QuoteTableViewController: SKPaymentTransactionObserver {
         // Append premiumQuotes to the end of quotesToShow
         quotesToShow.append(contentsOf: premiumQuotes)
         tableView.reloadData()
+    }
+    
+    // Check if users already purchased for the premium content
+    func isPurchased() -> Bool {
+        let purchasedStatus = UserDefaults.standard.bool(forKey: productID)
+        if purchasedStatus {
+            print("Previously Purchased")
+            return true
+        }
+        print("Never Purchased")
+        return false
     }
 }
