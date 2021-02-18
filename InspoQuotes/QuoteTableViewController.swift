@@ -120,6 +120,10 @@ extension QuoteTableViewController: SKPaymentTransactionObserver {
             } else if transaction.transactionState == .restored {
                 showPremiumQuotes()
                 print("Transaction Restored")
+                
+                // Remove Restore button after restore purchased successfully
+                navigationItem.setRightBarButtonItems(nil, animated: true)
+                
                 // Terminate transcation
                 SKPaymentQueue.default().finishTransaction(transaction)
             }
