@@ -50,6 +50,7 @@ class QuoteTableViewController: UITableViewController {
             // For reusable cell after purchased
             cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             cell.accessoryType = .none
+            
         } else {
             // Last Cell
             cell.textLabel?.text = "Get More Quotes"
@@ -97,7 +98,7 @@ extension QuoteTableViewController: SKPaymentTransactionObserver {
                 print("Transaction Successful")
                 
                 // What users get when paid for premium
-                
+                showPremiumQuotes()
                 
                 // End transaction after transaction has completed
                 SKPaymentQueue.default().finishTransaction(transaction)
