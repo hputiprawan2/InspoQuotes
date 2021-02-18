@@ -46,8 +46,12 @@ class QuoteTableViewController: UITableViewController {
         if indexPath.row < quotesToShow.count {
             cell.textLabel?.text = quotesToShow[indexPath.row]
             cell.textLabel?.numberOfLines = 0
+            
+            // For reusable cell after purchased
+            cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.accessoryType = .none
         } else {
-            // last cell
+            // Last Cell
             cell.textLabel?.text = "Get More Quotes"
             cell.textLabel?.textColor = #colorLiteral(red: 0.3176470588, green: 0.6235294118, blue: 0.737254902, alpha: 1)
             cell.accessoryType = .disclosureIndicator
