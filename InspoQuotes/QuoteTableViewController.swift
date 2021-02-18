@@ -42,7 +42,9 @@ class QuoteTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if isPurchased() {
+            return quotesToShow.count
+        }
         return quotesToShow.count + 1
     }
     
