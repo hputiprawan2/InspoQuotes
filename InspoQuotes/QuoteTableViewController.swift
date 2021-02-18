@@ -92,6 +92,9 @@ extension QuoteTableViewController: SKPaymentTransactionObserver {
                 // User payment successful
                 print("Transaction Successful")
                 
+                // What users get when paid for premium
+                
+                
                 // End transaction after transaction has completed
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
@@ -104,5 +107,11 @@ extension QuoteTableViewController: SKPaymentTransactionObserver {
                 SKPaymentQueue.default().finishTransaction(transaction)
             }
         }
+    }
+    
+    func showPremiumQuotes() {
+        // Append premiumQuotes to the end of quotesToShow
+        quotesToShow.append(contentsOf: premiumQuotes)
+        tableView.reloadData()
     }
 }
